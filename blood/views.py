@@ -72,6 +72,10 @@ class BloodRequestList(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
     
     
+      def delete(self, request, format=None):
+        all_bloodrequest = BloodRequest.objects.all().delete()
+        return Response({'message': 'Blood Request details were deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
+
       
 
     
