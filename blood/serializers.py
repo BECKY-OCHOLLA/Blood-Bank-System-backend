@@ -8,3 +8,10 @@ class StockSerializer(serializers.ModelSerializer):
         fields = ('bloodgroup', 'unit')
         
         
+class BloodRequestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BloodRequest
+        fields = ['id', 'patient_name', 'patient_age', 'reason','bloodgroup', 'unit', 'status','date']  
+        
+        
+    
