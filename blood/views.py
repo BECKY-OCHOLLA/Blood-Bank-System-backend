@@ -44,3 +44,22 @@ class StockList(APIView):
 
       
 
+
+class BloodRequestList(APIView):
+      permission_classes = (AllowAny,)
+      serializer_class = BloodRequestSerializer
+      
+    
+      def get(self, request, format=None):
+          all_bloodrequest = BloodRequest.objects.all()
+          serializers = BloodRequestSerializer(all_bloodrequest, many=True)
+          return Response(serializers.data)
+    
+    
+            
+
+    
+    
+    
+    
+    
