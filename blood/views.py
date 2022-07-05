@@ -37,9 +37,10 @@ class StockList(APIView):
             return Response(serializer.data) 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
     
-   
-    
-    
-    
-    
-    
+    # To delete all stock
+      def delete(self, request, format=None):
+        all_stock = Stock.objects.all().delete()
+        return Response({'message': 'Stock lists were deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
+
+      
+
