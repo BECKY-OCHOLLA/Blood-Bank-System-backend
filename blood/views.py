@@ -64,7 +64,14 @@ class BloodRequestList(APIView):
           return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
     
-     
+      def put(self, request, format=None):
+        serializer = BloodRequestSerializer(data=request.data) 
+        if serializer.is_valid(): 
+            serializer.save() 
+            return Response(serializer.data) 
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
+    
+    
       
 
     
