@@ -8,6 +8,12 @@ from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework.views import APIView
 import jwt, datetime
+from django.shortcuts import render,HttpResponseRedirect
+from django.http import Http404,HttpResponse,JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
+
+
 
 from .serializers import DonorSignupSerializer, DoctorSignupSerializer, PatientSignupSerializer, UserSerializer
 from .models import Doctor, User

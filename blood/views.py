@@ -1,13 +1,28 @@
 
 from .models import Stock,BloodRequest
 from .serializers import BloodRequestSerializer, StockSerializer
-from django.shortcuts import render
+from django.shortcuts import render,HttpResponseRedirect
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from django.http import Http404
+from django.http import Http404,HttpResponse,JsonResponse
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.parsers import JSONParser 
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
+def get_data(request):
+	data = Stock.objects.all()
+	if request.method == 'GET':
+		serializer = StockSerializer(data, many=True)
+		return JsonResponse(serializer.data, safe=False)
+
+def get_data(request):
+	data = BloodRequest.objects.all()
+	if request.method == 'GET':
+		serializer = BloodRequestSerializer(data, many=True)
+		return JsonResponse(serializer.data, safe=False)
+
 
 
 

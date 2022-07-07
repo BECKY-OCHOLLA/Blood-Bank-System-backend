@@ -1,6 +1,7 @@
 from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
 
+
 from . import views
 from .views import DoctorSignupView, DonorSignupView, PatientSignupView, LoginView, UserView, LogoutView
 
@@ -12,7 +13,10 @@ urlpatterns = [
     path('api/login', LoginView.as_view()),
     path('api/user', UserView.as_view()),
     path('api/logout', LogoutView.as_view()),
+    
 
 ]
+
+
 
 urlpatterns = format_suffix_patterns(urlpatterns)

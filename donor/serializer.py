@@ -1,6 +1,6 @@
 from dataclasses import fields
 from rest_framework import serializers
-from .models import Donor,BloodDonate
+from registrations.models import Donor,BloodDonate
 
 class DonorSerializer(serializers.ModelSerializer):
     class Meta:
