@@ -1,14 +1,30 @@
-from django.shortcuts import render
+from django.shortcuts import render,HttpResponseRedirect
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Donor,BloodDonate 
+from registrations.models import Donor,BloodDonate 
 from .serializer import DonorSerializer,BloodDonateSerializer
 from rest_framework import status
 from rest_framework.permissions import (SAFE_METHODS, AllowAny,IsAuthenticated)
 import json
 from collections import OrderedDict
 from django.core import serializers
-# from .renderers import UserJSONRenderer
+from django.http import Http404,HttpResponse,JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
+
+# @csrf_exempt
+# def get_data(request):
+# 	data = Donor.objects.all()
+# 	if request.method == 'GET':
+# 		serializer = DonorSerializer(data, many=True)
+# 		return JsonResponse(serializer.data, safe=False)
+
+# def get_data(request):
+# 	data = BloodDonate.objects.all()
+# 	if request.method == 'GET':
+# 		serializer = BloodDonateSerializer(data, many=True)
+# 		return JsonResponse(serializer.data, safe=False)
+
 
                                        
 

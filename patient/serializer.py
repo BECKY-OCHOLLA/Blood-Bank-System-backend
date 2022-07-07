@@ -1,6 +1,7 @@
 from dataclasses import fields
 from rest_framework import serializers
-from .models import Patient
+# from .models import Patient
+from registrations.models import Patient
 
 class PatientSerializer(serializers.ModelSerializer):
     class Meta:

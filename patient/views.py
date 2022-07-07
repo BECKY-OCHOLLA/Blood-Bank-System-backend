@@ -2,13 +2,30 @@ from django.shortcuts import render
 from requests import request
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import  Patient
+# from .models import  Patient
+from registrations.models import  Patient
 from django.contrib.auth.models import User
 from .permissions import IsAdminOrReadOnly
 from .serializer import PatientSerializer
 from rest_framework import status
 
 # Create your views here.
+from django.shortcuts import render,HttpResponseRedirect
+from django.http import Http404,HttpResponse,JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
+
+
+@csrf_exempt
+def get_data(request):
+	data = Patient.objects.all()
+	if request.method == 'GET':
+		serializer = PatientSerializer(data, many=True)
+		return JsonResponse(serializer.data, safe=False)
+
+
+
+
 def profile(request):
     current_user = request.user
     patient = Patient.objects.filter(user_id=current_user.pk).first()
